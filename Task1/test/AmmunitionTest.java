@@ -94,12 +94,40 @@ public class AmmunitionTest {
         testAmmo.removeItem(null);
     }
 
+    @Test(expected = ItemException.class)
+    public void removeNotDressedItem_throwItemException() throws Exception {
+        createAmmunitionItemsParamsSortedDESC();
+        dressAllAmmunition();
+
+        Helmet testHelmetNew = (Helmet) testSmithy.createItem(HelmetTypes.BASINET,"testHelmet",5,5,5);
+
+        testAmmo.removeItem(testHelmetNew);
+    }
+
+    @Test
+    public void removeDressedHelmet_throwItemException() throws Exception {
+        createAmmunitionItemsParamsSortedDESC();
+        dressAllAmmunition();
+
+        //Without helmet
+        Ammunition expected = new Ammunition();
+        expected.dressItem(testArmor);
+        expected.dressItem(testGloves);
+        expected.dressItem(testBoots);
+        expected.dressItem(testSword);
+        expected.dressItem(testShield);
+
+        testAmmo.removeItem(testHelmet);
+        assertEquals(expected,testAmmo);
+    }
+
     @Test
     public void sortByWeight_desc() throws Exception {
         createAmmunitionItemsParamsSortedDESC();
         dressAllAmmunition();
 
         Ammunition actual = new Ammunition();
+        //Unsorted
         actual.dressItem(testBoots);
         actual.dressItem(testSword);
         actual.dressItem(testHelmet);
@@ -118,6 +146,7 @@ public class AmmunitionTest {
         dressAllAmmunition();
 
         Ammunition actual = new Ammunition();
+        //Unsorted
         actual.dressItem(testBoots);
         actual.dressItem(testSword);
         actual.dressItem(testHelmet);
@@ -193,7 +222,7 @@ public class AmmunitionTest {
 
         Ammunition actual = testAmmo.getPriceFromTo(2, 1);
 
-        assertEquals(actual,expected);
+        assertEquals(actual, expected);
     }
 
     @Test(expected = ItemException.class)
@@ -234,7 +263,7 @@ public class AmmunitionTest {
 
         Ammunition actual = testAmmo.getWeightFromTo(2, 1);
 
-        assertEquals(actual,expected);
+        assertEquals(actual, expected);
     }
 
     @Test(expected = ItemException.class)
