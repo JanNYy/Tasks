@@ -130,9 +130,9 @@ public class Knight extends Human {
         return ammunition.clone();
     }
 
-    public void dressAmmunition(Item item) throws CloneNotSupportedException, ItemException {
+    public void dressAmmunition(Item item) throws CloneNotSupportedException, ItemException, PeopleException {
         itemCheck(item);
-        if (getWeightLoad() <= ammunition.ammunitionWeight()+item.getWeight()) throw new IllegalArgumentException("You can't dress this item. Weight is exceeded");
+        if (getWeightLoad() <= ammunition.ammunitionWeight()+item.getWeight()) throw new PeopleException("You can't dress this item. Weight is exceeded");
         else ammunition.dressItem(item);
     }
 
