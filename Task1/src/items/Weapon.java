@@ -1,5 +1,6 @@
 package courses.task1.items;
 
+import courses.task1.items.types.Appointment;
 import courses.task1.items.types.DamageTypes;
 
 public abstract class Weapon extends Item {
@@ -7,8 +8,8 @@ public abstract class Weapon extends Item {
     protected int damage;
     protected DamageTypes damageType;
 
-    public Weapon(String weaponName, int weaponPrice, int weaponWeight, int weaponDamage) throws ItemException {
-        super(weaponName, weaponPrice, weaponWeight);
+    public Weapon(String weaponName, int weaponPrice, int weaponWeight, int weaponDamage, Appointment weaponAppointment) throws ItemException {
+        super(weaponName, weaponPrice, weaponWeight, weaponAppointment);
         checkDamage(weaponDamage);
         damage = weaponDamage;
     }

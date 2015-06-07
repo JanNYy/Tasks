@@ -40,44 +40,9 @@ public class Ammunition implements Cloneable {
         return price;
     }
 
-    private String isWhat(Item item) {
-        if (isHelmet(item)) return ((Helmet)item).getClass().getSimpleName();
-        if (isArmor(item)) return ((Armor)item).getClass().getSimpleName();
-        if (isGloves(item)) return ((Gloves)item).getClass().getSimpleName();
-        if (isBoots(item)) return ((Boots)item).getClass().getSimpleName();
-        if (isWeapon(item)) return ((Weapon)item).getClass().getSimpleName();
-        if (isShield(item)) return ((Shield)item).getClass().getSimpleName();
-        else return "";
-    }
-
-    private boolean isHelmet(Item item) {
-        return item instanceof Helmet;
-    }
-
-    private boolean isArmor(Item item) {
-        return item instanceof Armor;
-    }
-
-    private boolean isGloves(Item item) {
-        return item instanceof Gloves;
-    }
-
-    private boolean isBoots(Item item) {
-        return item instanceof Boots;
-    }
-
-    private boolean isWeapon(Item item) {
-        return item instanceof Weapon;
-    }
-
-    private boolean isShield(Item item) {
-        return item instanceof Shield;
-    }
-
     private int findPosForAdd(Item item) {
-        String other = isWhat(item);
         for (int i = 0; i < ammo.size(); i++)
-            if (other.equals(isWhat(ammo.get(i))))
+            if ((item.getApplicableTo()).equals((ammo.get(i)).getApplicableTo()))
                 return i;
         return -1;
     }
@@ -87,7 +52,7 @@ public class Ammunition implements Cloneable {
         int itemPos = findPosForAdd(item);
         if (itemPos != -1)
             ammo.set(itemPos, item.clone());
-        else ammo.add(item);
+        else ammo.add(item.clone());
     }
 
     public void removeItem(Item item) throws ItemException {
@@ -152,4 +117,17 @@ public class Ammunition implements Cloneable {
         return cloneAmmo;
     }
 
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Ammunition)) return false;
+
+        Ammunition that = (Ammunition) o;
+
+        return !(ammo != null ? !ammo.equals(that.ammo) : that.ammo != null);
+
+    }
+
+    public int hashCode() {
+        return ammo != null ? ammo.hashCode() : 0;
+    }
 }

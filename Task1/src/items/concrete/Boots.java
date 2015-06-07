@@ -2,6 +2,7 @@ package courses.task1.items.concrete;
 
 import courses.task1.items.Clothes;
 import courses.task1.items.ItemException;
+import courses.task1.items.types.Appointment;
 import courses.task1.items.types.BootsTypes;
 
 public class Boots extends Clothes {
@@ -9,7 +10,7 @@ public class Boots extends Clothes {
     protected BootsTypes bootsType;
 
     public Boots(BootsTypes type, String bootsName, int bootsPrice, int bootsWeight, int bootsPhysProtection) throws ItemException {
-        super(bootsName, bootsPrice, bootsWeight, bootsPhysProtection);
+        super(bootsName, bootsPrice, bootsWeight, bootsPhysProtection, Appointment.LEGS);
         bootsType = type;
     }
 

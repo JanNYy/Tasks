@@ -1,11 +1,13 @@
 package courses.task1.items;
 
+import courses.task1.items.types.Appointment;
+
 public abstract class Clothes extends Item{
 
     protected int protectionPhysicalDamage;
 
-    public Clothes(String clothesName, int clothesPrice, int clothesWeight, int clothesPhysProtection) throws ItemException {
-        super(clothesName, clothesPrice, clothesWeight);
+    public Clothes(String clothesName, int clothesPrice, int clothesWeight, int clothesPhysProtection, Appointment clothesAppointment) throws ItemException {
+        super(clothesName, clothesPrice, clothesWeight, clothesAppointment);
         checkProtection(clothesPhysProtection);
         protectionPhysicalDamage = clothesPhysProtection;
     }
