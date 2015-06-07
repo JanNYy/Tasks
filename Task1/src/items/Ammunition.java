@@ -1,7 +1,5 @@
 package courses.task1.items;
 
-import courses.task1.items.concrete.*;
-
 import java.util.ArrayList;
 import java.util.Collections;
 
