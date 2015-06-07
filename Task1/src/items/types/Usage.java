@@ -1,6 +1,6 @@
 package courses.task1.items.types;
 
-public enum Application {
+public enum Usage {
 
     HEAD,
     BODY,

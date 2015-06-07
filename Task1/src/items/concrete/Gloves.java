@@ -2,7 +2,7 @@ package courses.task1.items.concrete;
 
 import courses.task1.items.Clothes;
 import courses.task1.items.ItemException;
-import courses.task1.items.types.Application;
+import courses.task1.items.types.Usage;
 import courses.task1.items.types.GlovesTypes;
 
 public class Gloves extends Clothes {
@@ -10,7 +10,7 @@ public class Gloves extends Clothes {
     protected GlovesTypes glovesType;
 
     public Gloves(GlovesTypes type, String glovesName, int glovesPrice, int glovesWeight, int glovesPhysProtection) throws ItemException {
-        super(glovesName, glovesPrice, glovesWeight, glovesPhysProtection, Application.HANDS);
+        super(glovesName, glovesPrice, glovesWeight, glovesPhysProtection, Usage.HANDS);
         glovesType = type;
     }
 

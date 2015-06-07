@@ -40,7 +40,7 @@ public class Ammunition implements Cloneable {
 
     private int findPosForAdd(Item item) {
         for (int i = 0; i < ammo.size(); i++)
-            if ((item.getApplicableTo()).equals((ammo.get(i)).getApplicableTo()))
+            if ((item.getUsedFor()).equals((ammo.get(i)).getUsedFor()))
                 return i;
         return -1;
     }
