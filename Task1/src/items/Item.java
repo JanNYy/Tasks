@@ -1,22 +1,22 @@
 package courses.task1.items;
 
-import courses.task1.items.types.Appointment;
+import courses.task1.items.types.Application;
 
 public class Item implements Cloneable{
 
     protected String name;
     protected int price;
     protected int weight;
-    protected Appointment applicableTo;
+    protected Application applicableTo;
 
-    public Item(String itemName, int itemPrice, int itemWeight, Appointment itemAppointment) throws ItemException {
+    public Item(String itemName, int itemPrice, int itemWeight, Application itemApplication) throws ItemException {
         checkName(itemName);
         checkPrice(itemPrice);
         checkWeight(itemWeight);
         name = itemName;
         price = itemPrice;
         weight = itemWeight;
-        applicableTo = itemAppointment;
+        applicableTo = itemApplication;
     }
 
     private void checkName(String name) throws ItemException {
@@ -43,7 +43,7 @@ public class Item implements Cloneable{
         return weight;
     }
 
-    public Appointment getApplicableTo() {
+    public Application getApplicableTo() {
         return applicableTo;
     }
 
