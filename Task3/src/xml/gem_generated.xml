@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<pavilion>
+<gem id="emerald0001">
+<name>emerald</name>
+<preciousness>precious</preciousness>
+<origin>Colombia</origin>
+<visualParameters>
+<color>green</color>
+<transparency>80</transparency>
+<gem-cut>8</gem-cut>
+</visualParameters>
+<value>8.0</value>
+</gem>
+<gem id="citrine0002">
+<name>citrine</name>
+<preciousness>semi-precious</preciousness>
+<origin>Brazil</origin>
+<visualParameters>
+<color>yellow</color>
+<transparency>40</transparency>
+<gem-cut>6</gem-cut>
+</visualParameters>
+<value>2.0</value>
+</gem>
+<gem id="ruby0003">
+<name>ruby</name>
+<preciousness>precious</preciousness>
+<origin>Thailand</origin>
+<visualParameters>
+<color>red</color>
+<transparency>10</transparency>
+<gem-cut>12</gem-cut>
+</visualParameters>
+<value>6.0</value>
+</gem>
+</pavilion>
