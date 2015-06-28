@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - railwaydb@localhost" uuid="3a89e325-f6be-4934-9c41-80b60db673c0">
+    <database-info product="MySQL" version="5.6.25-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <schema name="" catalog="railwaydb"/>
+    <table name="client" schema="" catalog="railwaydb" type="TABLE">
+      <column name="id_client" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="surname" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="name" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="patronymic" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="telephone" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="id_user_FK" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MQ=="/>
+      <primary-key name="PRIMARY" columns="id_client"/>
+      <foreign-key name="user_ibfk_1" columns="id_user_FK" ref-table="user" ref-schema="" ref-catalog="railwaydb" ref-columns="id_user" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="ticket_ibfk_1" table="ticket" schema="" catalog="railwaydb" columns="id_client_FK"/>
+    </table>
+    <table name="route_fragment" schema="" catalog="railwaydb" type="TABLE">
+      <column name="id_route_fragment" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="id_train_FK" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="id_start_station_FK" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="id_finish_station_FK" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="time_departure" sqlType="TIME" precision="8" scale="0" nullable="false" jdbcType="92"/>
+      <column name="time_travel" sqlType="TIME" precision="8" scale="0" nullable="false" jdbcType="92"/>
+      <column name="distance" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id_route_fragment"/>
+      <foreign-key name="route_fragment_ibfk_1" columns="id_start_station_FK" ref-table="station" ref-schema="" ref-catalog="railwaydb" ref-columns="id_station" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="route_fragment_ibfk_2" columns="id_finish_station_FK" ref-table="station" ref-schema="" ref-catalog="railwaydb" ref-columns="id_station" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="route_fragment_ibfk_3" columns="id_train_FK" ref-table="train" ref-schema="" ref-catalog="railwaydb" ref-columns="id_train" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="schedule_ibfk_1" table="schedule" schema="" catalog="railwaydb" columns="id_route_fragment_FK"/>
+      <exported-key name="ticket_ibfk_3" table="ticket" schema="" catalog="railwaydb" columns="id_route_fragment_FK"/>
+    </table>
+    <table name="schedule" schema="" catalog="railwaydb" type="TABLE">
+      <column name="id_schedule" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="datetime_start" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="id_route_fragment_FK" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id_schedule"/>
+      <foreign-key name="schedule_ibfk_1" columns="id_route_fragment_FK" ref-table="route_fragment" ref-schema="" ref-catalog="railwaydb" ref-columns="id_route_fragment" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="station" schema="" catalog="railwaydb" type="TABLE">
+      <column name="id_station" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name_station" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id_station"/>
+      <exported-key name="route_fragment_ibfk_1" table="route_fragment" schema="" catalog="railwaydb" columns="id_start_station_FK"/>
+      <exported-key name="route_fragment_ibfk_2" table="route_fragment" schema="" catalog="railwaydb" columns="id_finish_station_FK"/>
+      <index name="unique_name_station" unique="true" columns="name_station"/>
+    </table>
+    <table name="ticket" schema="" catalog="railwaydb" type="TABLE">
+      <column name="id_ticket" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="datetime_begin" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="datetime_end" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="number_wagon" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="number_seat" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="id_type_seat_FK" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="price" sqlType="DECIMAL" precision="10" scale="2" nullable="false" jdbcType="3"/>
+      <column name="status" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MQ=="/>
+      <column name="id_client_FK" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="id_route_fragment_FK" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id_ticket"/>
+      <foreign-key name="ticket_ibfk_1" columns="id_client_FK" ref-table="client" ref-schema="" ref-catalog="railwaydb" ref-columns="id_client" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="ticket_ibfk_2" columns="id_type_seat_FK" ref-table="type_seat" ref-schema="" ref-catalog="railwaydb" ref-columns="id_type_seat" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="ticket_ibfk_3" columns="id_route_fragment_FK" ref-table="route_fragment" ref-schema="" ref-catalog="railwaydb" ref-columns="id_route_fragment" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="train" schema="" catalog="railwaydb" type="TABLE">
+      <column name="id_train" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name_train" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id_train"/>
+      <exported-key name="route_fragment_ibfk_3" table="route_fragment" schema="" catalog="railwaydb" columns="id_train_FK"/>
+      <exported-key name="wagon_ibfk_1" table="wagon" schema="" catalog="railwaydb" columns="id_train_FK"/>
+      <index name="unique_name_train" unique="true" columns="name_train"/>
+    </table>
+    <table name="type_seat" schema="" catalog="railwaydb" type="TABLE">
+      <column name="id_type_seat" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name_type_seat" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id_type_seat"/>
+      <exported-key name="ticket_ibfk_2" table="ticket" schema="" catalog="railwaydb" columns="id_type_seat_FK"/>
+      <exported-key name="wagon_ibfk_2" table="wagon" schema="" catalog="railwaydb" columns="id_type_seat_FK"/>
+    </table>
+    <table name="user" schema="" catalog="railwaydb" type="TABLE">
+      <column name="id_user" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="login" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <column name="password" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="role" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MQ=="/>
+      <primary-key name="PRIMARY" columns="id_user"/>
+      <exported-key name="user_ibfk_1" table="client" schema="" catalog="railwaydb" columns="id_user_FK"/>
+      <index name="unique_login" unique="true" columns="login"/>
+    </table>
+    <table name="wagon" schema="" catalog="railwaydb" type="TABLE">
+      <column name="id_wagon" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="number_wagon" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MQ=="/>
+      <column name="number_of_seats" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="id_type_seat_FK" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="id_train_FK" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <primary-key name="PRIMARY" columns="id_wagon"/>
+      <foreign-key name="wagon_ibfk_1" columns="id_train_FK" ref-table="train" ref-schema="" ref-catalog="railwaydb" ref-columns="id_train" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="wagon_ibfk_2" columns="id_type_seat_FK" ref-table="type_seat" ref-schema="" ref-catalog="railwaydb" ref-columns="id_type_seat" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="id_train" unique="false" columns="id_train_FK"/>
+    </table>
+  </data-source>
+</component>
